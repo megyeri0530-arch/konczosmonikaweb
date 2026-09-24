@@ -76,43 +76,45 @@
           <p>Kérlek, add meg az adataidat és válaszd ki a kívánt szolgáltatást!</p>
         </div>
 
-        <form id="appointment-form">
+        <form id="appointment-form" name="idopontfoglalas" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="idopontfoglalas">
+          <p style="display:none;"><label>Don’t fill this out: <input name="bot-field" /></label></p>
           <div class="form-grid">
             <div class="form-group">
               <label for="booking-name" class="form-label">Teljes neved *</label>
-              <input type="text" id="booking-name" class="form-input" placeholder="Kovács Katalin" required>
+              <input type="text" id="booking-name" name="name" class="form-input" placeholder="Kovács Katalin" required>
             </div>
 
             <div class="form-group">
               <label for="booking-email" class="form-label">E-mail címed *</label>
-              <input type="email" id="booking-email" class="form-input" placeholder="katalin@example.com" required>
+              <input type="email" id="booking-email" name="email" class="form-input" placeholder="katalin@example.com" required>
             </div>
 
             <div class="form-group">
               <label for="booking-phone" class="form-label">Telefonszámod *</label>
-              <input type="tel" id="booking-phone" class="form-input" placeholder="+36 30 123 4567" required>
+              <input type="tel" id="booking-phone" name="phone" class="form-input" placeholder="+36 30 123 4567" required>
             </div>
 
             <div class="form-group">
               <label for="booking-service" class="form-label">Választott szolgáltatás *</label>
-              <select id="booking-service" class="form-select" required>
+              <select id="booking-service" name="service" class="form-select" required>
                 <option value="" disabled selected>Kérlek, válassz szolgáltatást...</option>
-                <option value="angyalkartya-30">Angyalkártyás elemzés (30 perc - 8.000 Ft)</option>
-                <option value="angyalkartya-60">Angyalkártyás elemzés (60 perc - 15.000 Ft)</option>
-                <option value="expanse-therapy">Expanse Therapy® energetikai kezelés (90 perc - 25.000 Ft)</option>
-                <option value="inga-30">Segítő beszélgetés ingával (30 perc - 8.000 Ft)</option>
-                <option value="csaladallitas">Családállítás + Angyalkártya (30.000 Ft)</option>
+                <option value="Angyalkártyás elemzés (30 perc)">Angyalkártyás elemzés (30 perc - 8.000 Ft)</option>
+                <option value="Angyalkártyás elemzés (60 perc)">Angyalkártyás elemzés (60 perc - 15.000 Ft)</option>
+                <option value="Expanse Therapy® kezelés (90 perc)">Expanse Therapy® energetikai kezelés (90 perc - 25.000 Ft)</option>
+                <option value="Segítő beszélgetés ingával (30 perc)">Segítő beszélgetés ingával (30 perc - 8.000 Ft)</option>
+                <option value="Családállítás + Angyalkártya">Családállítás + Angyalkártya (30.000 Ft)</option>
               </select>
             </div>
 
             <div class="form-group">
               <label for="booking-date" class="form-label">Tervezett dátum / Időpont</label>
-              <input type="date" id="booking-date" class="form-input" required>
+              <input type="date" id="booking-date" name="date" class="form-input" required>
             </div>
 
             <div class="form-group full-width">
               <label for="booking-message" class="form-label">Megjegyzés / Kérdés (Opcionális)</label>
-              <textarea id="booking-message" class="form-textarea" rows="4" placeholder="Írd le röviden, miben kényelmes felkeresned engem..."></textarea>
+              <textarea id="booking-message" name="message" class="form-textarea" rows="4" placeholder="Írd le röviden, miben kényelmes felkeresned engem..."></textarea>
             </div>
           </div>
 

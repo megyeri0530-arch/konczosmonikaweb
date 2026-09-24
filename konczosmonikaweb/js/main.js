@@ -56,22 +56,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 4. Appointment Form Handling
+  // 4. Appointment Form Handling (Netlify Forms AJAX)
   const bookingForm = document.getElementById('appointment-form');
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('booking-name').value;
-      const email = document.getElementById('booking-email').value;
-      const phone = document.getElementById('booking-phone').value;
-      const service = document.getElementById('booking-service').selectedOptions[0].text;
-      const date = document.getElementById('booking-date').value;
+      const submitBtn = bookingForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Küldés folyamatban... ⏳';
+      }
 
-      // Simple elegant alert modal feedback
-      alert(`Kedves ${name}!\n\nKöszönjük az időpontfoglalási igényedet!\nSzolgáltatás: ${service}\nTervezett dátum: ${date}\n\nHamarosan felvesszük veled a kapcsolatot a(z) ${email} e-mail címen vagy a(z) ${phone} telefonszámon!`);
-      
-      bookingForm.reset();
+      const formData = new FormData(bookingForm);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        bookingForm.innerHTML = `
+          <div style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(230, 215, 195, 0.25); border-radius: 16px; border: 1.5px solid var(--accent-gold); margin-top: 1rem;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">✨</div>
+            <h3 style="color: var(--purple-dark); font-size: 1.8rem; margin-bottom: 0.8rem; font-family: var(--font-script);">Köszönjük az időpontfoglalási igényedet!</h3>
+            <p style="font-size: 1.1rem; color: var(--text-dark); line-height: 1.7; max-width: 550px; margin: 0 auto;">
+              Az üzenetedet sikeresen megkaptuk.<br>Hamarosan felvesszük veled a kapcsolatot a megadott elérhetőségeiden!
+            </p>
+          </div>
+        `;
+      })
+      .catch((error) => {
+        alert('Hiba történt az üzenet küldése során. Kérlek, próbáld újra vagy keress minket telefonon/e-mailben!');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Időpontfoglalási igény elküldése 📩';
+        }
+      });
     });
   }
 
