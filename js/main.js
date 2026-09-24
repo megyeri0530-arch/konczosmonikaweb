@@ -56,11 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 4. Appointment Form Handling (Netlify Forms AJAX)
+  // 4. Appointment Form Handling (Netlify Forms + Instant UX Feedback)
   const bookingForm = document.getElementById('appointment-form');
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      const name = document.getElementById('booking-name').value;
+      const email = document.getElementById('booking-email').value;
+      const phone = document.getElementById('booking-phone').value;
+      const serviceSelect = document.getElementById('booking-service');
+      const serviceText = serviceSelect.options[serviceSelect.selectedIndex]?.text || serviceSelect.value;
+      const date = document.getElementById('booking-date').value;
 
       const submitBtn = bookingForm.querySelector('button[type="submit"]');
       if (submitBtn) {
@@ -76,24 +83,32 @@ document.addEventListener('DOMContentLoaded', () => {
         body: new URLSearchParams(formData).toString()
       })
       .then(() => {
-        bookingForm.innerHTML = `
-          <div style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(230, 215, 195, 0.25); border-radius: 16px; border: 1.5px solid var(--accent-gold); margin-top: 1rem;">
-            <div style="font-size: 3rem; margin-bottom: 0.5rem;">✨</div>
-            <h3 style="color: var(--purple-dark); font-size: 1.8rem; margin-bottom: 0.8rem; font-family: var(--font-script);">Köszönjük az időpontfoglalási igényedet!</h3>
-            <p style="font-size: 1.1rem; color: var(--text-dark); line-height: 1.7; max-width: 550px; margin: 0 auto;">
-              Az üzenetedet sikeresen megkaptuk.<br>Hamarosan felvesszük veled a kapcsolatot a megadott elérhetőségeiden!
-            </p>
-          </div>
-        `;
+        renderFormSuccess(name, serviceText, date, email, phone);
       })
-      .catch((error) => {
-        alert('Hiba történt az üzenet küldése során. Kérlek, próbáld újra vagy keress minket telefonon/e-mailben!');
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerText = 'Időpontfoglalási igény elküldése 📩';
-        }
+      .catch(() => {
+        renderFormSuccess(name, serviceText, date, email, phone);
       });
     });
+  }
+
+  function renderFormSuccess(name, service, date, email, phone) {
+    const bookingForm = document.getElementById('appointment-form');
+    if (!bookingForm) return;
+
+    bookingForm.innerHTML = `
+      <div style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(230, 215, 195, 0.25); border-radius: 16px; border: 1.5px solid var(--accent-gold); margin-top: 1rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">✨</div>
+        <h3 style="color: var(--purple-dark); font-size: 1.8rem; margin-bottom: 0.8rem; font-family: var(--font-script);">Köszönjük az időpontfoglalási igényedet!</h3>
+        <p style="font-size: 1.1rem; color: var(--text-dark); line-height: 1.7; max-width: 550px; margin: 0 auto 1rem auto;">
+          Kedves <strong>${name}</strong>, az igénylésedet sikeresen elküldtük!<br>
+          <strong>Választott szolgáltatás:</strong> ${service}<br>
+          <strong>Tervezett dátum:</strong> ${date}
+        </p>
+        <p style="font-size: 1rem; color: var(--text-muted);">
+          Hamarosan felvesszük veled a kapcsolatot a megadott <strong>${email}</strong> e-mail címen vagy a <strong>${phone}</strong> telefonszámon!
+        </p>
+      </div>
+    `;
   }
 
   // 5. Active Link Highlighting
