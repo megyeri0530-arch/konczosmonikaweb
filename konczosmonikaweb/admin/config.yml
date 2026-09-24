@@ -1,0 +1,21 @@
+backend:
+  name: test-repo
+  branch: main
+
+media_folder: "picture"
+public_folder: "picture"
+
+collections:
+  - name: "posts"
+    label: "Lélek-gondolatok"
+    folder: "posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Cím", name: "title", widget: "string"}
+      - {label: "Dátum", name: "date", widget: "string", default: "2026.09.22"}
+      - {label: "Szerző", name: "author", widget: "string", default: "Konczosné Megyeri Mónika"}
+      - {label: "Kategória / Címke", name: "category", widget: "string", default: "Angyali Útmutatás"}
+      - {label: "Borítókép", name: "image", widget: "image", default: "picture/ethereal_angel_hero_bg.png"}
+      - {label: "Rövid leírás (Kivonat)", name: "excerpt", widget: "text"}
+      - {label: "Bejegyzés tartalma", name: "body", widget: "markdown"}
