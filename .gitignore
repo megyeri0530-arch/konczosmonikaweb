@@ -1,0 +1,6 @@
+# Local scratch and temporary files
+scratch/
+user_step_*.txt
+rolam_story.txt
+.DS_Store
+Thumbs.db
