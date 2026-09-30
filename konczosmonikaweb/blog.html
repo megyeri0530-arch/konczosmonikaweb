@@ -148,16 +148,28 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Dynamic post loading from posts directory
-    const knownPostFiles = ["post-1.json", "post-2.json", "post-3.json"];
-
+    // Dynamic post loading from posts directory & GitHub API
     async function loadAllBlogPosts() {
       const container = document.getElementById('blog-cards-container');
       if (!container) return;
 
+      let postFiles = ["post-1.json", "post-2.json", "post-3.json"];
+
+      try {
+        const ghRes = await fetch('https://api.github.com/repos/megyeri0530-arch/konczosmonikaweb/contents/posts');
+        if (ghRes.ok) {
+          const files = await ghRes.json();
+          postFiles = files
+            .filter(f => f.name.endsWith('.json'))
+            .map(f => f.name);
+        }
+      } catch (e) {
+        console.warn("GitHub API post discovery fallback:", e);
+      }
+
       const loadedPosts = [];
 
-      for (const fileName of knownPostFiles) {
+      for (const fileName of postFiles) {
         try {
           const res = await fetch(`posts/${fileName}`);
           if (res.ok) {
@@ -174,6 +186,9 @@
         container.innerHTML = '<p style="text-align:center; width:100%;">Még nincsenek közzétett bejegyzések.</p>';
         return;
       }
+
+      // Sort newest posts first
+      loadedPosts.reverse();
 
       container.innerHTML = loadedPosts.map(post => `
         <div class="service-card">
