@@ -135,13 +135,13 @@
       const urlParams = new URLSearchParams(window.location.search);
       const fileParam = urlParams.get('file') || urlParams.get('id') || 'post-1';
       
-      let targetPath = `posts/${fileParam}.json`;
+      let targetPath = `posts/${fileParam}.json?t=${Date.now()}`;
       if (fileParam.endsWith('.json')) {
-        targetPath = `posts/${fileParam}`;
+        targetPath = `posts/${fileParam}?t=${Date.now()}`;
       }
 
       try {
-        const res = await fetch(targetPath);
+        const res = await fetch(targetPath, { cache: "no-store" });
         if (res.ok) {
           const post = await res.json();
           document.getElementById('post-title').innerText = post.title || 'Lélek-gondolatok';

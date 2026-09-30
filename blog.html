@@ -156,7 +156,7 @@
       let postFiles = ["post-1.json", "post-2.json", "post-3.json"];
 
       try {
-        const ghRes = await fetch('https://api.github.com/repos/megyeri0530-arch/konczosmonikaweb/contents/posts');
+        const ghRes = await fetch(`https://api.github.com/repos/megyeri0530-arch/konczosmonikaweb/contents/posts?t=${Date.now()}`, { cache: "no-store" });
         if (ghRes.ok) {
           const files = await ghRes.json();
           postFiles = files
@@ -171,7 +171,7 @@
 
       for (const fileName of postFiles) {
         try {
-          const res = await fetch(`posts/${fileName}`);
+          const res = await fetch(`posts/${fileName}?t=${Date.now()}`, { cache: "no-store" });
           if (res.ok) {
             const data = await res.json();
             data._fileName = fileName.replace('.json', '');
