@@ -9,5 +9,48 @@
 <body>
   <!-- Decap CMS Application -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: 'git-gateway',
+          branch: 'main'
+        },
+        media_folder: 'picture',
+        public_folder: 'picture',
+        collections: [
+          {
+            name: 'blog',
+            label: 'Lélek-gondolatok',
+            files: [
+              {
+                label: 'Összes Lélek-gondolat Bejegyzés',
+                name: 'posts_list',
+                file: 'posts.json',
+                fields: [
+                  {
+                    label: 'Bejegyzések',
+                    name: 'posts',
+                    widget: 'list',
+                    summary: '{{fields.title}} - {{fields.date}}',
+                    fields: [
+                      { label: 'Azonosító (ID)', name: 'id', widget: 'string' },
+                      { label: 'Cím', name: 'title', widget: 'string' },
+                      { label: 'Dátum', name: 'date', widget: 'string' },
+                      { label: 'Szerző', name: 'author', widget: 'string', default: 'Konczosné Megyeri Mónika' },
+                      { label: 'Kategória', name: 'category', widget: 'select', options: ['Lélek-gondolatok', 'Angyali Útmutatás', 'Expanse Therapy®', 'Önismeret'] },
+                      { label: 'Kép útvonal', name: 'image', widget: 'string', default: 'picture/ethereal_angel_hero_bg.png' },
+                      { label: 'Rövid összefoglaló', name: 'excerpt', widget: 'text' },
+                      { label: 'Bejegyzés tartalma', name: 'body', widget: 'markdown' }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
 </body>
 </html>
