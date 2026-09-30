@@ -131,43 +131,34 @@
 
   <script src="js/main.js"></script>
   <script>
-    const sampleData = {
-      "post-1": {
-        title: "Angyali útmutatás a belső békéhez és az elfogadáshoz",
-        date: "2026. szeptember 22.",
-        author: "Konczosné Megyeri Mónika",
-        category: "Angyali Útmutatás",
-        image: "picture/ethereal_angel_hero_bg.png",
-        content: "<p>A belső béke megtalálása korunk egyik legnagyobb kihívása. Sokszor azt gondoljuk, hogy akkor leszünk nyugodtak, ha körülöttünk minden feladat megoldódik, és a külvilág elcsendesedik. Az angyali tanítások azonban arra emlékeztetnek minket, hogy a valódi béke belülről fakad.</p><h3 style='font-family: var(--font-serif); font-size: 1.6rem; color: #3b282b; margin: 1.8rem 0 0.8rem 0;'>Hogyan kapcsolódj az angyali energiákhoz?</h3><p>Minden nap szánj 5-10 percet a csendes jelenlétre. Hunyd be a szemed, vegyél néhány mély lélegzetet, és képzeld el, amint egy meleg, aranyszínű fényölelés vesz körül. Ebben a pillanatban engedd el a félelmeidet és a megfelelni vágyást.</p><blockquote style='margin: 1.8rem 0; padding: 1.2rem 1.8rem; background: rgba(198, 160, 82, 0.12); border-left: 4px solid var(--primary-gold); font-family: var(--font-serif); font-size: 1.3rem; font-style: italic; color: #3b282b; border-radius: 0 12px 12px 0;'>„Amikor elengeded a kontrollt, teret nyitsz az égiek támogató energiáinak.”</blockquote><p>Az angyalkártyás elemzések során újra és újra rácsodálkozom, mennyire pontos útmutatást kapunk, amikor készek vagyunk meghallani a belső hangot. Szeretettel várlak egyéni konzultációmon is, ha szeretnéd mélyebben megérteni a jelenlegi élethelyzeted üzenetét!</p>"
-      },
-      "post-2": {
-        title: "Az Expanse Therapy® gyógyító ereje a mindennapi stressz kioldásában",
-        date: "2026. szeptember 20.",
-        author: "Konczosné Megyeri Mónika",
-        category: "Expanse Therapy®",
-        image: "picture/image7.png",
-        content: "<p>A mai rohanó világban a feszültség és a felhalmozódott stressz nemcsak a gondolatainkat nehezíti el, hanem a fizikai testünkben is lenyomatot hagy. Az Expanse Therapy® egy olyan különleges energetikai kezelés, amely a szervezetünk három fő központjára – a Fejre, a Szívre és a Hasra – összpontosít.</p><h3 style='font-family: var(--font-serif); font-size: 1.6rem; color: #3b282b; margin: 1.8rem 0 0.8rem 0;'>A három központ harmóniája</h3><p>A kezelés során természetes, regeneráló olajokat, finom érintéseket és fényterápiás elemeket alkalmazunk. Ez a kombináció segít abban, hogy a sejtszintű emlékezetből kioldódjanak a régi blokkok.</p><ul style='margin: 1.2rem 0 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 0.6rem;'><li><strong>Fej:</strong> Csendesíti a túlterhelt gondolatokat és a mentális kimerültséget.</li><li><strong>Szív:</strong> Nyitja a szeretet és az elfogadás csatornáit.</li><li><strong>Has:</strong> Kioldja a szorongást és az elfojtott félelmeket.</li></ul><p>Engedd meg magadnak a pihenést és a sejtszintű megújulást!</p>"
-      },
-      "post-3": {
-        title: "Tudatos teremtés: Hogyan lépj ki a régi minták csapdájából?",
-        date: "2026. szeptember 18.",
-        author: "Konczosné Megyeri Mónika",
-        category: "Önismeret",
-        image: "picture/cosmic_portal_hd_bg.png",
-        content: "<p>Gyakran érezzük úgy, hogy újra és újra ugyanazokba az akadályokba ütközünk az életben. Legyen szó párkapcsolatról, hivatásról vagy az önbecsülésünkről, a háttérben szinte mindig régi, berögzült minták dolgoznak.</p><h3 style='font-family: var(--font-serif); font-size: 1.6rem; color: #3b282b; margin: 1.8rem 0 0.8rem 0;'>A döntés hatalma</h3><p>A spirituális fejlődés nem azt jelenti, hogy soha többé nem lesznek nehézségeink, hanem azt, hogy megtanulunk másképp reagálni rájuk. Amikor észreveszed a saját működési mintáidat, megszűnik azok tudattalan hatalma feletted.</p><p>Szeretettel kísérlek ezen az úton az ingás mérések, angyalkártyás elemzések vagy a családállítás módszerével!</p>"
+    async function loadSinglePost() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fileParam = urlParams.get('file') || urlParams.get('id') || 'post-1';
+      
+      let targetPath = `posts/${fileParam}.json`;
+      if (fileParam.endsWith('.json')) {
+        targetPath = `posts/${fileParam}`;
       }
-    };
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('id') || 'post-1';
-    const post = sampleData[postId] || sampleData['post-1'];
+      try {
+        const res = await fetch(targetPath);
+        if (res.ok) {
+          const post = await res.json();
+          document.getElementById('post-title').innerText = post.title || 'Lélek-gondolatok';
+          document.getElementById('post-date').innerText = post.date || '';
+          document.getElementById('post-author').innerText = post.author || 'Konczosné Megyeri Mónika';
+          document.getElementById('post-category-badge').innerText = post.category || 'Lélek-gondolatok';
+          document.getElementById('post-cover-img').src = post.image || 'picture/ethereal_angel_hero_bg.png';
+          document.getElementById('post-body-content').innerHTML = post.content || post.body || '';
+        } else {
+          document.getElementById('post-title').innerText = "A keresett bejegyzés nem található.";
+        }
+      } catch (e) {
+        console.error("Error loading post details:", e);
+      }
+    }
 
-    document.getElementById('post-title').innerText = post.title;
-    document.getElementById('post-date').innerText = post.date;
-    document.getElementById('post-author').innerText = post.author;
-    document.getElementById('post-category-badge').innerText = post.category;
-    document.getElementById('post-cover-img').src = post.image;
-    document.getElementById('post-body-content').innerHTML = post.content;
+    document.addEventListener('DOMContentLoaded', loadSinglePost);
   </script>
 </body>
 </html>

@@ -148,54 +148,53 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Load posts dynamically into blog-cards-container
-    const samplePosts = [
-      {
-        id: "post-1",
-        title: "Angyali útmutatás a belső békéhez és az elfogadáshoz",
-        date: "2026. szeptember 22.",
-        category: "Angyali Útmutatás",
-        image: "picture/ethereal_angel_hero_bg.png",
-        excerpt: "A belső béke nem a külső körülmények csendjéből fakad, hanem abból a bizonyosságból, hogy nem vagy egyedül. Ismerd meg az angyalok üzenetét a mindennapi elcsendesedéshez."
-      },
-      {
-        id: "post-2",
-        title: "Az Expanse Therapy® gyógyító ereje a mindennapi stressz kioldásában",
-        date: "2026. szeptember 20.",
-        category: "Expanse Therapy®",
-        image: "picture/image7.png",
-        excerpt: "Tudtad, hogy a testünk megőrzi az elfojtott érzelmeket? Az Expanse Therapy® a Fej-Szív-Has tengelyén keresztül szabadítja fel a felhalmozódott feszültséget."
-      },
-      {
-        id: "post-3",
-        title: "Tudatos teremtés: Hogyan lépj ki a régi minták csapdájából?",
-        date: "2026. szeptember 18.",
-        category: "Önismeret",
-        image: "picture/cosmic_portal_hd_bg.png",
-        excerpt: "A változás a tudatosítással kezdődik. Lépésről lépésre megmutatom, hogyan cserélheted le a félelmeidet a szabadság és az önszeretet érzésére."
-      }
-    ];
+    // Dynamic post loading from posts directory
+    const knownPostFiles = ["post-1.json", "post-2.json", "post-3.json"];
 
-    const container = document.getElementById('blog-cards-container');
-    if (container) {
-      container.innerHTML = samplePosts.map(post => `
+    async function loadAllBlogPosts() {
+      const container = document.getElementById('blog-cards-container');
+      if (!container) return;
+
+      const loadedPosts = [];
+
+      for (const fileName of knownPostFiles) {
+        try {
+          const res = await fetch(`posts/${fileName}`);
+          if (res.ok) {
+            const data = await res.json();
+            data._fileName = fileName.replace('.json', '');
+            loadedPosts.push(data);
+          }
+        } catch (e) {
+          console.error("Post fetch error:", e);
+        }
+      }
+
+      if (loadedPosts.length === 0) {
+        container.innerHTML = '<p style="text-align:center; width:100%;">Még nincsenek közzétett bejegyzések.</p>';
+        return;
+      }
+
+      container.innerHTML = loadedPosts.map(post => `
         <div class="service-card">
           <div class="service-img-wrapper">
-            <img src="${post.image}" alt="${post.title}" class="service-img">
+            <img src="${post.image || 'picture/ethereal_angel_hero_bg.png'}" alt="${post.title}" class="service-img">
             <div class="service-img-overlay"></div>
-            <span class="service-badge">${post.category}</span>
+            <span class="service-badge">${post.category || 'Lélek-gondolatok'}</span>
           </div>
           <div class="service-body">
-            <div style="font-size: 0.85rem; color: var(--primary-gold-dark); margin-bottom: 0.4rem; font-weight: 600;">${post.date}</div>
+            <div style="font-size: 0.85rem; color: var(--primary-gold-dark); margin-bottom: 0.4rem; font-weight: 600;">${post.date || ''}</div>
             <h3 class="service-title">${post.title}</h3>
-            <p class="service-text">${post.excerpt}</p>
+            <p class="service-text">${post.excerpt || ''}</p>
             <div class="service-footer" style="width: 100%; justify-content: flex-end;">
-              <a href="blog-reszletek.html?id=${post.id}" class="service-cta-link">Elolvasom ➔</a>
+              <a href="blog-reszletek.html?file=${post._fileName}" class="service-cta-link">Elolvasom ➔</a>
             </div>
           </div>
         </div>
       `).join('');
     }
+
+    document.addEventListener('DOMContentLoaded', loadAllBlogPosts);
 
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
