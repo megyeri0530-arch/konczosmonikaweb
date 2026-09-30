@@ -133,42 +133,32 @@
   <script>
     async function loadSinglePost() {
       const urlParams = new URLSearchParams(window.location.search);
-      const fileParam = urlParams.get('file') || urlParams.get('id') || 'post-1';
+      const rawTarget = urlParams.get('id') || urlParams.get('file') || 'post-1';
+      const targetId = decodeURIComponent(rawTarget).replace('.json', '');
       
-      let fileName = fileParam.endsWith('.json') ? fileParam : `${fileParam}.json`;
-      let loaded = false;
       let post = null;
 
       try {
-        const res = await fetch(`posts/${fileName}?t=${Date.now()}`, { cache: "no-store" });
+        let res = await fetch(`posts.json?t=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) {
+          res = await fetch(`https://raw.githubusercontent.com/megyeri0530-arch/konczosmonikaweb/main/posts.json?t=${Date.now()}`, { cache: "no-store" });
+        }
         if (res.ok) {
-          post = await res.json();
-          loaded = true;
+          const data = await res.json();
+          const posts = Array.isArray(data) ? data : (data.posts || []);
+          post = posts.find(p => p.id === targetId || p.title === targetId || encodeURIComponent(p.id || p.title) === rawTarget);
         }
       } catch (e) {
-        console.warn("Local post fetch failed, trying raw GitHub URL", e);
+        console.error("Error loading post from posts.json:", e);
       }
 
-      if (!loaded) {
-        try {
-          const rawUrl = `https://raw.githubusercontent.com/megyeri0530-arch/konczosmonikaweb/main/posts/${fileName}?t=${Date.now()}`;
-          const res = await fetch(rawUrl, { cache: "no-store" });
-          if (res.ok) {
-            post = await res.json();
-            loaded = true;
-          }
-        } catch (e) {
-          console.error("GitHub raw post fetch failed", e);
-        }
-      }
-
-      if (loaded && post) {
+      if (post) {
         document.getElementById('post-title').innerText = post.title || 'Lélek-gondolatok';
         document.getElementById('post-date').innerText = post.date || '';
         document.getElementById('post-author').innerText = post.author || 'Konczosné Megyeri Mónika';
         document.getElementById('post-category-badge').innerText = post.category || 'Lélek-gondolatok';
         document.getElementById('post-cover-img').src = post.image || 'picture/ethereal_angel_hero_bg.png';
-        document.getElementById('post-body-content').innerHTML = post.content || post.body || post.excerpt || '';
+        document.getElementById('post-body-content').innerHTML = post.body || post.content || post.excerpt || '';
       } else {
         document.getElementById('post-title').innerText = "A keresett bejegyzés nem található.";
       }

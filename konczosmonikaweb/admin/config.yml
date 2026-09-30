@@ -6,19 +6,23 @@ media_folder: "picture"
 public_folder: "picture"
 
 collections:
-  - name: "posts"
+  - name: "blog"
     label: "Lélek-gondolatok"
-    folder: "posts"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    format: "json"
-    extension: "json"
-    fields:
-      - {label: "Azonosító (ID)", name: "id", widget: "string"}
-      - {label: "Cím", name: "title", widget: "string"}
-      - {label: "Dátum", name: "date", widget: "string", default: "2026.09.30"}
-      - {label: "Szerző", name: "author", widget: "string", default: "Konczosné Megyeri Mónika"}
-      - {label: "Kategória / Címke", name: "category", widget: "string", default: "Angyali Útmutatás"}
-      - {label: "Borítókép", name: "image", widget: "image", default: "picture/ethereal_angel_hero_bg.png"}
-      - {label: "Rövid leírás (Kivonat)", name: "excerpt", widget: "text"}
-      - {label: "Bejegyzés tartalma", name: "content", widget: "html"}
+    files:
+      - label: "Összes Lélek-gondolat Bejegyzés"
+        name: "posts_list"
+        file: "posts.json"
+        fields:
+          - label: "Bejegyzések"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}} - {{fields.date}}"
+            fields:
+              - {label: "Azonosító (ID)", name: "id", widget: "string"}
+              - {label: "Cím", name: "title", widget: "string"}
+              - {label: "Dátum", name: "date", widget: "string"}
+              - {label: "Szerző", name: "author", widget: "string", default: "Konczosné Megyeri Mónika"}
+              - {label: "Kategória", name: "category", widget: "select", options: ["Lélek-gondolatok", "Angyali Útmutatás", "Expanse Therapy®", "Önismeret"]}
+              - {label: "Kép útvonal", name: "image", widget: "string", default: "picture/ethereal_angel_hero_bg.png"}
+              - {label: "Rövid összefoglaló", name: "excerpt", widget: "text"}
+              - {label: "Bejegyzés tartalma", name: "body", widget: "markdown"}
