@@ -148,7 +148,7 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Dynamic post loading from konczosmonikaweb/posts directory & GitHub API
+    // Dynamic post loading from GitHub raw URLs & local fallbacks
     async function loadAllBlogPosts() {
       const container = document.getElementById('blog-cards-container');
       if (!container) return;
@@ -156,43 +156,54 @@
       let postFiles = [];
 
       try {
-        const ghRes = await fetch(`https://api.github.com/repos/megyeri0530-arch/konczosmonikaweb/contents/konczosmonikaweb/posts?t=${Date.now()}`, { cache: "no-store" });
+        const ghRes = await fetch(`https://api.github.com/repos/megyeri0530-arch/konczosmonikaweb/contents/posts?t=${Date.now()}`, { cache: "no-store" });
         if (ghRes.ok) {
           const files = await ghRes.json();
           postFiles = files
             .filter(f => f.name.endsWith('.json'))
-            .map(f => f.name);
+            .map(f => ({ name: f.name, rawUrl: f.download_url }));
         }
       } catch (e) {
-        console.warn("Subfolder fetch error:", e);
+        console.warn("GitHub API fetch warning:", e);
       }
 
       if (postFiles.length === 0) {
-        postFiles = ["2026-09-30-teszt-2.json", "2026-09-30-teszt-1.json", "2026-09-30-teszt.json", "post-1.json", "post-2.json", "post-3.json"];
+        const fallbacks = ["2026-09-30-teszt.json", "post-1.json", "post-2.json", "post-3.json"];
+        postFiles = fallbacks.map(f => ({ name: f, rawUrl: `posts/${f}` }));
       }
 
       const loadedPosts = [];
 
-      for (const fileName of postFiles) {
+      for (const item of postFiles) {
         try {
-          const res = await fetch(`posts/${fileName}?t=${Date.now()}`, { cache: "no-store" });
+          let res = await fetch(`${item.rawUrl}?t=${Date.now()}`, { cache: "no-store" });
+          if (!res.ok) {
+            res = await fetch(`posts/${item.name}?t=${Date.now()}`, { cache: "no-store" });
+          }
           if (res.ok) {
             const data = await res.json();
-            data._fileName = fileName.replace('.json', '');
+            data._fileName = item.name.replace('.json', '');
             loadedPosts.push(data);
           }
         } catch (e) {
-          console.error("Post fetch error:", e);
+          console.error("Post load error:", e);
         }
       }
 
       if (loadedPosts.length === 0) {
-        container.innerHTML = '<p style="text-align:center; width:100%;">Még nincsenek közzétett bejegyzések.</p>';
+        container.innerHTML = '<p style="text-align:center; width:100%; color: var(--primary-gold-dark); font-size: 1.1rem; padding: 2rem;">Még nincsenek közzétett bejegyzések.</p>';
         return;
       }
 
-      // Sort newest posts first
-      loadedPosts.reverse();
+      // Sort posts: newest first
+      loadedPosts.sort((a, b) => {
+        const dateA = a.date || '';
+        const dateB = b.date || '';
+        if (dateA && dateB) {
+          return dateB.localeCompare(dateA);
+        }
+        return (b._fileName || '').localeCompare(a._fileName || '');
+      });
 
       container.innerHTML = loadedPosts.map(post => `
         <div class="service-card">
@@ -204,7 +215,7 @@
           <div class="service-body">
             <div style="font-size: 0.85rem; color: var(--primary-gold-dark); margin-bottom: 0.4rem; font-weight: 600;">${post.date || ''}</div>
             <h3 class="service-title">${post.title}</h3>
-            <p class="service-text">${post.excerpt || ''}</p>
+            <p class="service-text">${post.excerpt || post.body || ''}</p>
             <div class="service-footer" style="width: 100%; justify-content: flex-end;">
               <a href="blog-reszletek.html?file=${post._fileName}" class="service-cta-link">Elolvasom ➔</a>
             </div>
