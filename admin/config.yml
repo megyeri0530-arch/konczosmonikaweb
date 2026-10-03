@@ -2,6 +2,7 @@ backend:
   name: github
   repo: megyeri0530-arch/konczosmonikaweb
   branch: main
+  auth_methods: [token, oauth]
   base_url: https://xn--llekfny-byae.com
   auth_endpoint: api/auth
 
