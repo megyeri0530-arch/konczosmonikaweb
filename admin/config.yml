@@ -2,6 +2,8 @@ backend:
   name: github
   repo: megyeri0530-arch/konczosmonikaweb
   branch: main
+  base_url: https://xn--llekfny-byae.com
+  auth_endpoint: api/auth
 
 media_folder: "picture"
 public_folder: "picture"
