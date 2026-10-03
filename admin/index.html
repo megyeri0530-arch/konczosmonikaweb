@@ -7,6 +7,8 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <!-- Enable manual CMS init to prevent double collection error -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
   <!-- Decap CMS Application -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
