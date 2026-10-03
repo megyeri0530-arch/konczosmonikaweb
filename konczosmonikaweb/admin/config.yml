@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: megyeri0530-arch/konczosmonikaweb
   branch: main
 
 media_folder: "picture"
