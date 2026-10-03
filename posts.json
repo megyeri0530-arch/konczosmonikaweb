@@ -1,52 +1,54 @@
-[
-  {
-    "id": "2026-09-30-teszt2",
-    "title": "teszt2",
-    "date": "2026.09.30",
-    "author": "Konczosné Megyeri Mónika",
-    "category": "Angyali Útmutatás",
-    "image": "picture/ethereal_angel_hero_bg.png",
-    "excerpt": "teszt2",
-    "body": "teszt2"
-  },
-  {
-    "id": "2026-09-30-teszt",
-    "title": "teszt",
-    "date": "2026.09.30",
-    "author": "Konczosné Megyeri Mónika",
-    "category": "Angyali Útmutatás",
-    "image": "picture/ethereal_angel_hero_bg.png",
-    "excerpt": "teszt",
-    "body": "teszt"
-  },
-  {
-    "id": "post-3",
-    "title": "Angyali útmutatás a belső békéhez és az elfogadáshoz",
-    "date": "2026. szeptember 22.",
-    "author": "Konczosné Megyeri Mónika",
-    "category": "Angyali Útmutatás",
-    "image": "picture/ethereal_angel_hero_bg.png",
-    "excerpt": "A belső béke nem a külső körülmények csendjéből fakad, hanem abból a bizonyosságból, hogy nem vagy egyedül. Ismerd meg az angyalok üzenetét a mindennapi elcsendesedéshez.",
-    "body": "A belső béke nem a külső körülmények csendjéből fakad, hanem abból a bizonyosságból, hogy nem vagy egyedül. Ismerd meg az angyalok üzenetét a mindennapi elcsendesedéshez."
-  },
-  {
-    "id": "post-2",
-    "title": "Az Expanse Therapy® gyógyító ereje a mindennapi stressz kioldásában",
-    "date": "2026. szeptember 20.",
-    "author": "Konczosné Megyeri Mónika",
-    "category": "Expanse Therapy®",
-    "image": "picture/expanse_oils_hd.png",
-    "excerpt": "Tudtad, hogy a testünk megőrzi az elfojtott érzelmeket? Az Expanse Therapy® a Fej-Szív-Has tengelyen keresztül szabadítja fel a felhalmozódott feszültséget.",
-    "body": "Tudtad, hogy a testünk megőrzi az elfojtott érzelmeket? Az Expanse Therapy® a Fej-Szív-Has tengelyen keresztül szabadítja fel a felhalmozódott feszültséget."
-  },
-  {
-    "id": "post-1",
-    "title": "Tudatos teremtés: Hogyan lépj ki a régi minták csapdájából?",
-    "date": "2026. szeptember 18.",
-    "author": "Konczosné Megyeri Mónika",
-    "category": "Önismeret",
-    "image": "picture/cosmic_ethereal_bg.png",
-    "excerpt": "A változás a tudatosítással kezdődik. Lépésről lépésre megmutatom, hogyan cserélheted le a félelmeidet a szabadság és az önszeretet érzésére.",
-    "body": "A változás a tudatosítással kezdődik. Lépésről lépésre megmutatom, hogyan cserélheted le a félelmeidet a szabadság és az önszeretet érzésére."
-  }
-]
+{
+  "posts": [
+    {
+      "id": "2026-09-30-teszt2",
+      "title": "teszt2",
+      "date": "2026.09.30",
+      "author": "Konczosné Megyeri Mónika",
+      "category": "Angyali Útmutatás",
+      "image": "picture/ethereal_angel_hero_bg.png",
+      "excerpt": "teszt2",
+      "body": "teszt2"
+    },
+    {
+      "id": "2026-09-30-teszt",
+      "title": "teszt",
+      "date": "2026.09.30",
+      "author": "Konczosné Megyeri Mónika",
+      "category": "Angyali Útmutatás",
+      "image": "picture/ethereal_angel_hero_bg.png",
+      "excerpt": "teszt",
+      "body": "teszt"
+    },
+    {
+      "id": "post-3",
+      "title": "Angyali útmutatás a belső békéhez és az elfogadáshoz",
+      "date": "2026. szeptember 22.",
+      "author": "Konczosné Megyeri Mónika",
+      "category": "Angyali Útmutatás",
+      "image": "picture/ethereal_angel_hero_bg.png",
+      "excerpt": "A belső béke nem a külső körülmények csendjéből fakad, hanem abból a bizonyosságból, hogy nem vagy egyedül. Ismerd meg az angyalok üzenetét a mindennapi elcsendesedéshez.",
+      "body": "A belső béke nem a külső körülmények csendjéből fakad, hanem abból a bizonyosságból, hogy nem vagy egyedül. Ismerd meg az angyalok üzenetét a mindennapi elcsendesedéshez."
+    },
+    {
+      "id": "post-2",
+      "title": "Az Expanse Therapy® gyógyító ereje a mindennapi stressz kioldásában",
+      "date": "2026. szeptember 20.",
+      "author": "Konczosné Megyeri Mónika",
+      "category": "Expanse Therapy®",
+      "image": "picture/expanse_oils_hd.png",
+      "excerpt": "Tudtad, hogy a testünk megőrzi az elfojtott érzelmeket? Az Expanse Therapy® a Fej-Szív-Has tengelyen keresztül szabadítja fel a felhalmozódott feszültséget.",
+      "body": "Tudtad, hogy a testünk megőrzi az elfojtott érzelmeket? Az Expanse Therapy® a Fej-Szív-Has tengelyen keresztül szabadítja fel a felhalmozódott feszültséget."
+    },
+    {
+      "id": "post-1",
+      "title": "Tudatos teremtés: Hogyan lépj ki a régi minták csapdájából?",
+      "date": "2026. szeptember 18.",
+      "author": "Konczosné Megyeri Mónika",
+      "category": "Önismeret",
+      "image": "picture/cosmic_ethereal_bg.png",
+      "excerpt": "A változás a tudatosítással kezdődik. Lépésről lépésre megmutatom, hogyan cserélheted le a félelmeidet a szabadság és az önszeretet érzésére.",
+      "body": "A változás a tudatosítással kezdődik. Lépésről lépésre megmutatom, hogyan cserélheted le a félelmeidet a szabadság és az önszeretet érzésére."
+    }
+  ]
+}
