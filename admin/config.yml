@@ -24,9 +24,9 @@ collections:
             fields:
               - {label: "Azonosító (ID)", name: "id", widget: "string"}
               - {label: "Cím", name: "title", widget: "string"}
-              - {label: "Dátum", name: "date", widget: "string"}
+              - {label: "Dátum", name: "date", widget: "datetime", format: "YYYY.MM.DD", date_format: "YYYY.MM.DD", time_format: false}
               - {label: "Szerző", name: "author", widget: "string", default: "Konczosné Megyeri Mónika"}
               - {label: "Kategória", name: "category", widget: "select", options: ["Lélek-gondolatok", "Angyali Útmutatás", "Expanse Therapy®", "Önismeret"]}
-              - {label: "Kép útvonal", name: "image", widget: "string", default: "picture/ethereal_angel_hero_bg.png"}
+              - {label: "Bejegyzés Borítóképe", name: "image", widget: "image", default: "picture/ethereal_angel_hero_bg.png", media_folder: "picture", public_folder: "picture"}
               - {label: "Rövid összefoglaló", name: "excerpt", widget: "text"}
               - {label: "Bejegyzés tartalma", name: "body", widget: "markdown"}
