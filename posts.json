@@ -1,26 +1,6 @@
 {
   "posts": [
     {
-      "id": "2026-09-30-teszt2",
-      "title": "teszt2",
-      "date": "2026.09.30",
-      "author": "Konczosné Megyeri Mónika",
-      "category": "Angyali Útmutatás",
-      "image": "picture/ethereal_angel_hero_bg.png",
-      "excerpt": "teszt2",
-      "body": "teszt2"
-    },
-    {
-      "id": "2026-09-30-teszt",
-      "title": "teszt",
-      "date": "2026.09.30",
-      "author": "Konczosné Megyeri Mónika",
-      "category": "Angyali Útmutatás",
-      "image": "picture/ethereal_angel_hero_bg.png",
-      "excerpt": "teszt",
-      "body": "teszt"
-    },
-    {
       "id": "post-3",
       "title": "Angyali útmutatás a belső békéhez és az elfogadáshoz",
       "date": "2026. szeptember 22.",
