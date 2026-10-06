@@ -277,33 +277,17 @@
       letter-spacing: 0.5px;
     }
 
-    /* Interactive Fillable Form Inputs */
-    input.pdf-field, textarea.pdf-field {
+    /* Precision Target Field Containers */
+    .pdf-target-field {
       width: 100%;
-      background: rgba(255, 253, 247, 0.6);
-      border: none;
-      border-bottom: 1.5px dashed rgba(198, 160, 82, 0.5);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10pt;
-      color: #2D1F3F;
-      outline: none;
-      resize: none;
-      padding: 4px 6px;
-      line-height: 24px;
-      box-shadow: none;
-      border-radius: 0;
+      min-height: 24px;
+      position: relative;
     }
 
-    input.pdf-field:focus, textarea.pdf-field:focus {
-      background: rgba(255, 253, 247, 0.95);
-      border-bottom-color: #B38E42;
-    }
-
-    .writing-lines-container {
+    .line {
+      height: 24px;
+      border-bottom: 1.5px dashed rgba(198, 160, 82, 0.45);
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
     }
 
     .step-box {
@@ -333,7 +317,7 @@
 <body>
 
   <!-- PAGE 1: COVER -->
-  <div class="page cover-page">
+  <div class="page cover-page" data-page="1">
     <div class="cover-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -374,7 +358,7 @@
 
 
   <!-- PAGE 2: HOW TO USE -->
-  <div class="page">
+  <div class="page" data-page="2">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -393,15 +377,19 @@
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Az angyalkártyám / útravaló kártyám neve:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Kattints ide és gépeld be a kártya nevét..."></textarea>
+        <div class="pdf-target-field" data-name="card_name" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 25px;">
         <label class="question-label">A mondat, amit az elemzésből magammal viszek:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="4" placeholder="Kattints ide és gépeld be a mondatot..."></textarea>
+        <div class="pdf-target-field" data-name="card_sentence" style="height: 96px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
@@ -414,7 +402,7 @@
 
 
   <!-- PAGE 3: DAY 1 -->
-  <div class="page">
+  <div class="page" data-page="3">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -432,30 +420,36 @@
 
       <div class="question-block">
         <label class="question-label">Hogyan érzem magam valójában? Írj le 3 érzést.</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
+        <div class="pdf-target-field" data-name="day1_q1" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Most arra lenne a legnagyobb szükségem, hogy...</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day1_q2" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Tegyél meg ma egyetlen kis dolgot, ami ebből a szükségletedből ad neked valamit.</div>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
+        <div class="pdf-target-field" data-name="day1_step" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
+        <div class="pdf-target-field" data-name="day1_insight" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
@@ -468,7 +462,7 @@
 
 
   <!-- PAGE 4: DAY 2 -->
-  <div class="page">
+  <div class="page" data-page="4">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -486,30 +480,36 @@
 
       <div class="question-block">
         <label class="question-label">Mi az, ami mostanában a legtöbb energiát veszi el tőlem?</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day2_q1" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Ebből mi az, amin tudok változtatni - akár csak egy kicsit?</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day2_q2" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Ma egyetlen helyzetben válassz valamit másképpen, mint ahogyan megszoktad.</div>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
+        <div class="pdf-target-field" data-name="day2_step" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
+        <div class="pdf-target-field" data-name="day2_insight" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
@@ -522,7 +522,7 @@
 
 
   <!-- PAGE 5: DAY 3 -->
-  <div class="page">
+  <div class="page" data-page="5">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -540,30 +540,36 @@
 
       <div class="question-block">
         <label class="question-label">Amit már nem szeretnék ugyanígy továbbvinni, az...</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day3_q1" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Ha ebből egy kicsit elengednék, több helyem lenne arra, hogy...</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day3_q2" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Nem kell ma teljesen elengedned. Csak figyeld meg, mikor és hogyan jelenik meg.</div>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
+        <div class="pdf-target-field" data-name="day3_step" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
+        <div class="pdf-target-field" data-name="day3_insight" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
@@ -576,7 +582,7 @@
 
 
   <!-- PAGE 6: DAY 4 -->
-  <div class="page">
+  <div class="page" data-page="6">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -594,30 +600,36 @@
 
       <div class="question-block">
         <label class="question-label">Mi az, amit valójában másképpen szeretnék?</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day4_q1" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Ha ma egy kicsit jobban figyelnék magamra, akkor...</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day4_q2" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Tegyél ma egy apró dolgot azért, mert neked jó.</div>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
+        <div class="pdf-target-field" data-name="day4_step" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
+        <div class="pdf-target-field" data-name="day4_insight" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
@@ -630,7 +642,7 @@
 
 
   <!-- PAGE 7: DAY 5 -->
-  <div class="page">
+  <div class="page" data-page="7">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -648,30 +660,36 @@
 
       <div class="question-block">
         <label class="question-label">Milyen belső erőm segített át rajta?</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day5_q1" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Van bennem ____________, és ezt már bizonyítottam magamnak akkor, amikor...</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day5_q2" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Ma tudatosan használd ezt az erődet egyetlen helyzetben.</div>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
+        <div class="pdf-target-field" data-name="day5_step" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
+        <div class="pdf-target-field" data-name="day5_insight" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
@@ -684,7 +702,7 @@
 
 
   <!-- PAGE 8: DAY 6 -->
-  <div class="page">
+  <div class="page" data-page="8">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -702,30 +720,36 @@
 
       <div class="question-block">
         <label class="question-label">Ha nem kellene senkinek megfelelnem, miből szeretnék többet?</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day6_q1" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Szeretnék több ____________ az életembe.</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day6_q2" style="height: 72px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Tegyél ma valamit, ami akár csak egy apró lépéssel közelebb visz ehhez.</div>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
+        <div class="pdf-target-field" data-name="day6_step" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
+        <div class="pdf-target-field" data-name="day6_insight" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
@@ -738,7 +762,7 @@
 
 
   <!-- PAGE 9: DAY 7 -->
-  <div class="page">
+  <div class="page" data-page="9">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -756,37 +780,42 @@
 
       <div class="question-block">
         <label class="question-label">Ezen a héten felismertem, hogy...</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day7_q1" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Amit szeretnék magam mögött hagyni...</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day7_q2" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Amit mostantól szeretnék jobban megadni magamnak...</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Írd ide a válaszodat..."></textarea>
+        <div class="pdf-target-field" data-name="day7_q3" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Válassz egyetlen konkrét dolgot, amit a következő héten is folytatni fogsz.</div>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
+        <div class="pdf-target-field" data-name="day7_step" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 6px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
+        <div class="pdf-target-field" data-name="day7_insight" style="height: 48px;">
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
@@ -799,7 +828,7 @@
 
 
   <!-- PAGE 10: CLOSING & BLESSING -->
-  <div class="page">
+  <div class="page" data-page="10">
     <div class="page-bg"></div>
     <div class="page-border"></div>
     <div class="page-border-inner"></div>
@@ -817,15 +846,21 @@
 
       <div class="question-block">
         <label class="question-label">Mit jelent számomra ennek a kártyának az üzenete most?</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="4" placeholder="Írd ide a gondolataidat..."></textarea>
+        <div class="pdf-target-field" data-name="closing_q1" style="height: 96px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 16px;">
         <label class="question-label">Az én útravalóm:</label>
-        <div class="writing-lines-container">
-          <textarea class="pdf-field" rows="4" placeholder="Írd ide az útravalódat..."></textarea>
+        <div class="pdf-target-field" data-name="closing_q2" style="height: 96px;">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
 
