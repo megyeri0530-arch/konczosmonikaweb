@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>7 NAPOS MINI FELADAT – Visszatalálás önmagamhoz | Konczosné Megyeri Mónika</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Alex+Brush&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FFFDF7;
+      color: #2D1F3F;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+      page-break-after: always;
+      page-break-inside: avoid;
+      overflow: hidden;
+      padding: 20mm 20mm 18mm 20mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #FFFDF7;
+    }
+
+    /* Background overlay for content pages */
+    .page-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-image: url('ethereal_sunlit_angel_bg.jpg');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.18;
+    }
+
+    .cover-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-image: url('ethereal_sunlit_angel_bg.jpg');
+      background-size: cover;
+      background-position: center center;
+      opacity: 0.45;
+    }
+
+    .page-border {
+      position: absolute;
+      top: 10mm;
+      left: 10mm;
+      right: 10mm;
+      bottom: 10mm;
+      border: 1px solid rgba(198, 160, 82, 0.4);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .page-border-inner {
+      position: absolute;
+      top: 11.5mm;
+      left: 11.5mm;
+      right: 11.5mm;
+      bottom: 11.5mm;
+      border: 0.5px solid rgba(198, 160, 82, 0.25);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 3;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Cover Styling */
+    .cover-page {
+      text-align: center;
+      justify-content: space-between;
+      padding: 25mm 20mm 20mm 20mm;
+    }
+
+    .brand-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      letter-spacing: 3px;
+      color: #A37C33;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .brand-subtag {
+      font-size: 9pt;
+      letter-spacing: 4px;
+      color: #6C5B7B;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .cover-title-box {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .cover-main-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32pt;
+      font-weight: 700;
+      color: #2D1F3F;
+      letter-spacing: 4px;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .cover-subtitle {
+      font-family: 'Alex Brush', cursive;
+      font-size: 36pt;
+      color: #C6A052;
+      margin: 0 0 25px 0;
+      line-height: 1;
+    }
+
+    .lotus-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .lotus-line {
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, #C6A052, transparent);
+    }
+
+    .lotus-icon {
+      width: 24px;
+      height: 24px;
+      fill: #C6A052;
+    }
+
+    .quote-card {
+      background: rgba(255, 253, 247, 0.85);
+      border: 1px solid rgba(198, 160, 82, 0.4);
+      border-radius: 12px;
+      padding: 18px 25px;
+      margin: 25px auto 0 auto;
+      max-width: 85%;
+      box-shadow: 0 4px 20px rgba(198, 160, 82, 0.08);
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      font-style: italic;
+      color: #4A3B5C;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .cover-author {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15pt;
+      font-weight: 600;
+      color: #2D1F3F;
+      letter-spacing: 1px;
+    }
+
+    .cover-author-title {
+      font-size: 9.5pt;
+      color: #7A698B;
+      letter-spacing: 2px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Inner Page Headers & Footers */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(198, 160, 82, 0.3);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+
+    .header-left {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13pt;
+      font-weight: 700;
+      color: #A37C33;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .header-right {
+      font-size: 8.5pt;
+      color: #7A698B;
+      letter-spacing: 1px;
+    }
+
+    .page-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(198, 160, 82, 0.3);
+      padding-top: 8px;
+      margin-top: auto;
+      font-size: 8.5pt;
+      color: #7A698B;
+    }
+
+    .page-number {
+      font-weight: 600;
+      color: #A37C33;
+    }
+
+    /* Headings & Section Styling */
+    .day-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20pt;
+      font-weight: 700;
+      color: #2D1F3F;
+      margin: 0 0 6px 0;
+      letter-spacing: 1px;
+    }
+
+    .day-guidance {
+      font-size: 10pt;
+      color: #5A4A6E;
+      line-height: 1.55;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .question-block {
+      margin-bottom: 16px;
+    }
+
+    .question-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12.5pt;
+      font-weight: 700;
+      color: #A37C33;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .writing-lines {
+      width: 100%;
+    }
+
+    .line {
+      height: 24px;
+      border-bottom: 1px dashed rgba(198, 160, 82, 0.45);
+      width: 100%;
+    }
+
+    .step-box {
+      background: rgba(198, 160, 82, 0.06);
+      border-left: 3px solid #C6A052;
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      margin: 14px 0 12px 0;
+    }
+
+    .step-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13pt;
+      font-weight: 700;
+      color: #2D1F3F;
+      margin-bottom: 2px;
+    }
+
+    .step-desc {
+      font-size: 9.5pt;
+      color: #5A4A6E;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: COVER -->
+  <div class="page cover-page">
+    <div class="cover-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content" style="align-items: center;">
+      <div style="margin-top: 15mm; text-align: center;">
+        <div class="brand-tag">Lélekfény</div>
+        <div class="brand-subtag">Konczosné Megyeri Mónika</div>
+      </div>
+
+      <div class="cover-title-box">
+        <div class="lotus-divider">
+          <div class="lotus-line"></div>
+          <svg class="lotus-icon" viewBox="0 0 24 24"><path d="M12 4c-1.5 3-4 5.5-7 6.5 2 4 5.5 6.5 7 9.5 1.5-3 5-5.5 7-9.5-3-1-5.5-3.5-7-6.5z"/><path d="M12 10c-1 2-2.5 3.5-4.5 4.5 1.5 2.5 3.5 4 4.5 5.5 1-1.5 3-3 4.5-5.5-2-1-3.5-2.5-4.5-4.5z"/></svg>
+          <div class="lotus-line"></div>
+        </div>
+
+        <h1 class="cover-main-title">7 NAPOS MINI FELADAT</h1>
+        <div class="cover-subtitle">Visszatalálás önmagamhoz</div>
+
+        <div class="lotus-divider">
+          <div class="lotus-line"></div>
+          <svg class="lotus-icon" viewBox="0 0 24 24"><path d="M12 4c-1.5 3-4 5.5-7 6.5 2 4 5.5 6.5 7 9.5 1.5-3 5-5.5 7-9.5-3-1-5.5-3.5-7-6.5z"/><path d="M12 10c-1 2-2.5 3.5-4.5 4.5 1.5 2.5 3.5 4 4.5 5.5 1-1.5 3-3 4.5-5.5-2-1-3.5-2.5-4.5-4.5z"/></svg>
+          <div class="lotus-line"></div>
+        </div>
+
+        <div class="quote-card">
+          <p class="quote-text">„Nem kell egyszerre mindent megváltoztatnod. Elég egy apró lépés, amely közelebb visz önmagadhoz.”</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 10mm; text-align: center;">
+        <div class="cover-author">Konczosné Megyeri Mónika</div>
+        <div class="cover-author-title">Spiritualis Kísérő & Energetikai Kezelő • Lélekfény</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 2: HOW TO USE -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">Lélekfény Munkafüzet</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">Hogyan használd ezt a munkafüzetet?</h2>
+      <div class="day-guidance" style="font-size: 10.5pt; font-style: normal; line-height: 1.7; margin-bottom: 24px;">
+        Ez a hét nem arról szól, hogy mindent meg kell változtatnod az életedben. Csak figyeld meg magad egy kicsit másképpen.<br><br>
+        Naponta <strong>5-10 perc elegendő</strong>. Írd le azt, ami elsőként megérkezik benned. Nincsenek jó vagy rossz válaszok, csak a saját belső igazságod.
+      </div>
+
+      <div class="question-block" style="margin-top: 10px;">
+        <label class="question-label">Az angyalkártyám / útravaló kártyám neve:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 25px;">
+        <label class="question-label">A mondat, amit az elemzésből magammal viszek:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">2. oldal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 3: DAY 1 -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">1. Nap</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">1. nap - Hol vagyok most?</h2>
+      <div class="day-guidance">
+        Ma állj meg egy pillanatra. Ne azt írd le, hogyan kellene érezned magad, hanem azt, ami valóban benned van.
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Hogyan érzem magam valójában? Írj le 3 érzést.</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Most arra lenne a legnagyobb szükségem, hogy...</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-header">Mai apró lépésem</div>
+        <div class="step-desc">Tegyél meg ma egyetlen kis dolgot, ami ebből a szükségletedből ad neked valamit.</div>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 10px;">
+        <label class="question-label">Mai gondolatom / felismerésem:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">3. oldal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 4: DAY 2 -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">2. Nap</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">2. nap - Mi viszi az energiámat?</h2>
+      <div class="day-guidance">
+        Figyeld meg a napodat, és vedd észre, mi az, ami újra és újra elfáraszt vagy lehúz.
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Mi az, ami mostanában a legtöbb energiát veszi el tőlem?</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Ebből mi az, amin tudok változtatni - akár csak egy kicsit?</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-header">Mai apró lépésem</div>
+        <div class="step-desc">Ma egyetlen helyzetben válassz valamit másképpen, mint ahogyan megszoktad.</div>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 10px;">
+        <label class="question-label">Mai gondolatom / felismerésem:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">4. oldal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 5: DAY 3 -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">3. Nap</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">3. nap - Mit ideje letenni?</h2>
+      <div class="day-guidance">
+        Gondolj valamire, amit régóta cipelsz: egy sérelemre, félelemre, elvárásra vagy egy erős 'muszáj' érzésre.
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Amit már nem szeretnék ugyanígy továbbvinni, az...</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Ha ebből egy kicsit elengednék, több helyem lenne arra, hogy...</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-header">Mai apró lépésem</div>
+        <div class="step-desc">Nem kell ma teljesen elengedned. Csak figyeld meg, mikor és hogyan jelenik meg.</div>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 10px;">
+        <label class="question-label">Mai gondolatom / felismerésem:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">5. oldal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 6: DAY 4 -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">4. Nap</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">4. nap - Hol vagyok én a saját életemben?</h2>
+      <div class="day-guidance">
+        Ma figyeld meg, mennyi minden történik valódi választásból, és mennyi azért, hogy megfelelj másoknak.
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Mi az, amit valójában másképpen szeretnék?</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Ha ma egy kicsit jobban figyelnék magamra, akkor...</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-header">Mai apró lépésem</div>
+        <div class="step-desc">Tegyél ma egy apró dolgot azért, mert neked jó.</div>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 10px;">
+        <label class="question-label">Mai gondolatom / felismerésem:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">6. oldal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 7: DAY 5 -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">5. Nap</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">5. nap - Mi az erőm?</h2>
+      <div class="day-guidance">
+        Gondolj vissza egy nehéz időszakra, amelyen már túljutottál. Mi segített akkor?
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Milyen belső erőm segített át rajta?</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Van bennem ____________, és ezt már bizonyítottam magamnak akkor, amikor...</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-header">Mai apró lépésem</div>
+        <div class="step-desc">Ma tudatosan használd ezt az erődet egyetlen helyzetben.</div>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 10px;">
+        <label class="question-label">Mai gondolatom / felismerésem:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">7. oldal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 8: DAY 6 -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">6. Nap</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">6. nap - Mire vágyom valójában?</h2>
+      <div class="day-guidance">
+        Egy pillanatra tedd félre, mit várnak tőled mások. Figyelj arra, miből szeretnél többet az életedben.
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Ha nem kellene senkinek megfelelnem, miből szeretnék többet?</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Szeretnék több ____________ az életembe.</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-header">Mai apró lépésem</div>
+        <div class="step-desc">Tegyél ma valamit, ami akár csak egy apró lépéssel közelebb visz ehhez.</div>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 10px;">
+        <label class="question-label">Mai gondolatom / felismerésem:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">8. oldal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 9: DAY 7 -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">7. Nap</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">7. nap - Mit viszek tovább?</h2>
+      <div class="day-guidance">
+        Vedd elő az előző hat nap válaszait. Ne elemezd túl őket; keresd inkább azt, ami ismétlődik.
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Ezen a héten felismertem, hogy...</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Amit szeretnék magam mögött hagyni...</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Amit mostantól szeretnék jobban megadni magamnak...</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="step-box">
+        <div class="step-header">Mai apró lépésem</div>
+        <div class="step-desc">Válassz egyetlen konkrét dolgot, amit a következő héten is folytatni fogsz.</div>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 6px;">
+        <label class="question-label">Mai gondolatom / felismerésem:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">9. oldal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAGE 10: CLOSING & BLESSING -->
+  <div class="page">
+    <div class="page-bg"></div>
+    <div class="page-border"></div>
+    <div class="page-border-inner"></div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="header-left">Záró Útravaló</div>
+        <div class="header-right">Visszatalálás Önmagamhoz</div>
+      </div>
+
+      <h2 class="day-title">Az útravaló kártyám</h2>
+      <div class="day-guidance">
+        Tedd magad elé az angyalkártyás elemzésedből kapott útravaló kártyát. Nézd meg újra, most már a mögötted lévő hét tapasztalataival.
+      </div>
+
+      <div class="question-block">
+        <label class="question-label">Mit jelent számomra ennek a kártyának az üzenete most?</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="question-block" style="margin-top: 16px;">
+        <label class="question-label">Az én útravalóm:</label>
+        <div class="writing-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="margin-top: 25px; margin-bottom: 20px; text-align: center;">
+        <p class="quote-text" style="font-size: 15pt; color: #A37C33;">„Elég egy olyan apró lépés, amely közelebb visz önmagadhoz.”</p>
+      </div>
+
+      <div style="text-align: center; margin-top: auto; margin-bottom: 10px;">
+        <div style="font-family: 'Alex Brush', cursive; font-size: 26pt; color: #C6A052; margin-bottom: 4px;">Konczosné Megyeri Mónika</div>
+        <div style="font-size: 9.5pt; color: #7A698B; letter-spacing: 2.5px; text-transform: uppercase;">Lélekfény • Test • Lélek • Szellem</div>
+      </div>
+
+      <div class="page-footer">
+        <div>Konczosné Megyeri Mónika • Lélekfény</div>
+        <div class="page-number">10. oldal</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
