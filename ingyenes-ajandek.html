@@ -291,7 +291,7 @@
 
   <script src="js/main.js"></script>
   <script>
-    function handleLeadSubmit(event) {
+    async function handleLeadSubmit(event) {
       event.preventDefault();
 
       const name = document.getElementById('subscriber-name').value.trim();
@@ -302,6 +302,17 @@
       document.getElementById('user-display-name').innerText = name;
       document.getElementById('lead-magnet-form').style.display = 'none';
       document.getElementById('download-success').style.display = 'block';
+
+      // Send subscriber data to MailerLite via backend Cloudflare API function
+      try {
+        fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email })
+        }).catch(err => console.error('Subscription sync error:', err));
+      } catch (err) {
+        console.error('Subscription error:', err);
+      }
 
       // Auto-trigger PDF download
       const downloadAnchor = document.createElement('a');
