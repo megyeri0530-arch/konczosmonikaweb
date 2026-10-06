@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>7 NAPOS MINI FELADAT – Visszatalálás önmagamhoz | Konczosné Megyeri Mónika</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Alex+Brush&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Alex+Brush&display=swap');
 
     @page {
       size: A4 portrait;
@@ -15,6 +15,7 @@
       box-sizing: border-box;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
+      font-variant-numeric: lining-nums proportional-nums !important;
     }
 
     body {
@@ -40,7 +41,7 @@
       background: #FFFDF7;
     }
 
-    /* Background overlay for content pages */
+    /* Background overlays */
     .page-bg {
       position: absolute;
       top: 0;
@@ -51,7 +52,7 @@
       background-image: url('ethereal_sunlit_angel_bg.jpg');
       background-size: cover;
       background-position: center top;
-      opacity: 0.18;
+      opacity: 0.16;
     }
 
     .cover-bg {
@@ -64,7 +65,7 @@
       background-image: url('ethereal_sunlit_angel_bg.jpg');
       background-size: cover;
       background-position: center center;
-      opacity: 0.45;
+      opacity: 0.42;
     }
 
     .page-border {
@@ -73,7 +74,7 @@
       left: 10mm;
       right: 10mm;
       bottom: 10mm;
-      border: 1px solid rgba(198, 160, 82, 0.4);
+      border: 1px solid rgba(198, 160, 82, 0.45);
       z-index: 2;
       pointer-events: none;
     }
@@ -97,7 +98,7 @@
       flex-direction: column;
     }
 
-    /* Cover Styling */
+    /* Cover Page Styling */
     .cover-page {
       text-align: center;
       justify-content: space-between;
@@ -105,19 +106,19 @@
     }
 
     .brand-tag {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14pt;
-      letter-spacing: 3px;
-      color: #A37C33;
+      font-family: 'Cinzel', serif;
+      font-size: 15pt;
+      letter-spacing: 4px;
+      color: #B38E42;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 4px;
     }
 
     .brand-subtag {
-      font-size: 9pt;
-      letter-spacing: 4px;
-      color: #6C5B7B;
+      font-size: 9.5pt;
+      letter-spacing: 3px;
+      color: #5C4B6E;
       text-transform: uppercase;
       font-weight: 500;
     }
@@ -128,22 +129,23 @@
     }
 
     .cover-main-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 32pt;
+      font-family: 'Cinzel', serif;
+      font-size: 28pt;
       font-weight: 700;
       color: #2D1F3F;
-      letter-spacing: 4px;
-      margin: 0 0 10px 0;
+      letter-spacing: 5px;
+      margin: 0 0 8px 0;
       text-transform: uppercase;
-      line-height: 1.15;
+      line-height: 1.2;
+      font-variant-numeric: lining-nums !important;
     }
 
     .cover-subtitle {
       font-family: 'Alex Brush', cursive;
-      font-size: 36pt;
+      font-size: 38pt;
       color: #C6A052;
-      margin: 0 0 25px 0;
-      line-height: 1;
+      margin: 0 0 20px 0;
+      line-height: 1.1;
     }
 
     .lotus-divider {
@@ -151,51 +153,51 @@
       align-items: center;
       justify-content: center;
       gap: 15px;
-      margin: 20px 0;
+      margin: 18px 0;
     }
 
     .lotus-line {
       height: 1px;
-      width: 60px;
+      width: 65px;
       background: linear-gradient(90deg, transparent, #C6A052, transparent);
     }
 
     .lotus-icon {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       fill: #C6A052;
     }
 
     .quote-card {
-      background: rgba(255, 253, 247, 0.85);
-      border: 1px solid rgba(198, 160, 82, 0.4);
+      background: rgba(255, 253, 247, 0.88);
+      border: 1px solid rgba(198, 160, 82, 0.45);
       border-radius: 12px;
-      padding: 18px 25px;
-      margin: 25px auto 0 auto;
-      max-width: 85%;
+      padding: 18px 24px;
+      margin: 22px auto 0 auto;
+      max-width: 88%;
       box-shadow: 0 4px 20px rgba(198, 160, 82, 0.08);
     }
 
     .quote-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14pt;
+      font-family: 'Cinzel', serif;
+      font-size: 12pt;
       font-style: italic;
       color: #4A3B5C;
-      line-height: 1.5;
+      line-height: 1.6;
       margin: 0;
     }
 
     .cover-author {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cinzel', serif;
       font-size: 15pt;
-      font-weight: 600;
+      font-weight: 700;
       color: #2D1F3F;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
     }
 
     .cover-author-title {
       font-size: 9.5pt;
-      color: #7A698B;
+      color: #6C5B7B;
       letter-spacing: 2px;
       margin-top: 4px;
       text-transform: uppercase;
@@ -206,23 +208,23 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(198, 160, 82, 0.3);
+      border-bottom: 1px solid rgba(198, 160, 82, 0.35);
       padding-bottom: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .header-left {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13pt;
+      font-family: 'Cinzel', serif;
+      font-size: 12pt;
       font-weight: 700;
-      color: #A37C33;
-      letter-spacing: 2.5px;
+      color: #B38E42;
+      letter-spacing: 3px;
       text-transform: uppercase;
     }
 
     .header-right {
       font-size: 8.5pt;
-      color: #7A698B;
+      color: #6C5B7B;
       letter-spacing: 1px;
     }
 
@@ -230,77 +232,99 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid rgba(198, 160, 82, 0.3);
+      border-top: 1px solid rgba(198, 160, 82, 0.35);
       padding-top: 8px;
       margin-top: auto;
       font-size: 8.5pt;
-      color: #7A698B;
+      color: #6C5B7B;
     }
 
     .page-number {
       font-weight: 600;
-      color: #A37C33;
+      color: #B38E42;
     }
 
     /* Headings & Section Styling */
     .day-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20pt;
+      font-family: 'Cinzel', serif;
+      font-size: 18pt;
       font-weight: 700;
       color: #2D1F3F;
       margin: 0 0 6px 0;
       letter-spacing: 1px;
+      font-variant-numeric: lining-nums !important;
     }
 
     .day-guidance {
-      font-size: 10pt;
+      font-size: 9.5pt;
       color: #5A4A6E;
       line-height: 1.55;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       font-style: italic;
     }
 
     .question-block {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .question-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12.5pt;
+      font-family: 'Cinzel', serif;
+      font-size: 11pt;
       font-weight: 700;
-      color: #A37C33;
+      color: #B38E42;
       margin-bottom: 6px;
       display: block;
+      letter-spacing: 0.5px;
     }
 
-    .writing-lines {
+    /* Interactive Fillable Form Inputs */
+    input.pdf-field, textarea.pdf-field {
       width: 100%;
+      background: rgba(255, 253, 247, 0.6);
+      border: none;
+      border-bottom: 1.5px dashed rgba(198, 160, 82, 0.5);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10pt;
+      color: #2D1F3F;
+      outline: none;
+      resize: none;
+      padding: 4px 6px;
+      line-height: 24px;
+      box-shadow: none;
+      border-radius: 0;
     }
 
-    .line {
-      height: 24px;
-      border-bottom: 1px dashed rgba(198, 160, 82, 0.45);
+    input.pdf-field:focus, textarea.pdf-field:focus {
+      background: rgba(255, 253, 247, 0.95);
+      border-bottom-color: #B38E42;
+    }
+
+    .writing-lines-container {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
     .step-box {
-      background: rgba(198, 160, 82, 0.06);
+      background: rgba(198, 160, 82, 0.07);
       border-left: 3px solid #C6A052;
       border-radius: 0 8px 8px 0;
-      padding: 10px 14px;
-      margin: 14px 0 12px 0;
+      padding: 12px 16px;
+      margin: 14px 0 14px 0;
     }
 
     .step-header {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13pt;
+      font-family: 'Cinzel', serif;
+      font-size: 11.5pt;
       font-weight: 700;
       color: #2D1F3F;
       margin-bottom: 2px;
+      letter-spacing: 0.5px;
     }
 
     .step-desc {
-      font-size: 9.5pt;
+      font-size: 9pt;
       color: #5A4A6E;
       margin-bottom: 8px;
     }
@@ -362,26 +386,22 @@
       </div>
 
       <h2 class="day-title">Hogyan használd ezt a munkafüzetet?</h2>
-      <div class="day-guidance" style="font-size: 10.5pt; font-style: normal; line-height: 1.7; margin-bottom: 24px;">
+      <div class="day-guidance" style="font-size: 10pt; font-style: normal; line-height: 1.7; margin-bottom: 24px;">
         Ez a hét nem arról szól, hogy mindent meg kell változtatnod az életedben. Csak figyeld meg magad egy kicsit másképpen.<br><br>
         Naponta <strong>5-10 perc elegendő</strong>. Írd le azt, ami elsőként megérkezik benned. Nincsenek jó vagy rossz válaszok, csak a saját belső igazságod.
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Az angyalkártyám / útravaló kártyám neve:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Kattints ide és gépeld be a kártya nevét..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 25px;">
         <label class="question-label">A mondat, amit az elemzésből magammal viszek:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="4" placeholder="Kattints ide és gépeld be a mondatot..."></textarea>
         </div>
       </div>
 
@@ -412,36 +432,30 @@
 
       <div class="question-block">
         <label class="question-label">Hogyan érzem magam valójában? Írj le 3 érzést.</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Most arra lenne a legnagyobb szükségem, hogy...</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Tegyél meg ma egyetlen kis dolgot, ami ebből a szükségletedből ad neked valamit.</div>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
         </div>
       </div>
 
@@ -472,36 +486,30 @@
 
       <div class="question-block">
         <label class="question-label">Mi az, ami mostanában a legtöbb energiát veszi el tőlem?</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Ebből mi az, amin tudok változtatni - akár csak egy kicsit?</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Ma egyetlen helyzetben válassz valamit másképpen, mint ahogyan megszoktad.</div>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
         </div>
       </div>
 
@@ -532,36 +540,30 @@
 
       <div class="question-block">
         <label class="question-label">Amit már nem szeretnék ugyanígy továbbvinni, az...</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Ha ebből egy kicsit elengednék, több helyem lenne arra, hogy...</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Nem kell ma teljesen elengedned. Csak figyeld meg, mikor és hogyan jelenik meg.</div>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
         </div>
       </div>
 
@@ -592,36 +594,30 @@
 
       <div class="question-block">
         <label class="question-label">Mi az, amit valójában másképpen szeretnék?</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Ha ma egy kicsit jobban figyelnék magamra, akkor...</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Tegyél ma egy apró dolgot azért, mert neked jó.</div>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
         </div>
       </div>
 
@@ -652,36 +648,30 @@
 
       <div class="question-block">
         <label class="question-label">Milyen belső erőm segített át rajta?</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Van bennem ____________, és ezt már bizonyítottam magamnak akkor, amikor...</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Ma tudatosan használd ezt az erődet egyetlen helyzetben.</div>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
         </div>
       </div>
 
@@ -712,36 +702,30 @@
 
       <div class="question-block">
         <label class="question-label">Ha nem kellene senkinek megfelelnem, miből szeretnék többet?</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Szeretnék több ____________ az életembe.</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="3" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Tegyél ma valamit, ami akár csak egy apró lépéssel közelebb visz ehhez.</div>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 10px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
         </div>
       </div>
 
@@ -772,42 +756,37 @@
 
       <div class="question-block">
         <label class="question-label">Ezen a héten felismertem, hogy...</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Amit szeretnék magam mögött hagyni...</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="question-block">
         <label class="question-label">Amit mostantól szeretnék jobban megadni magamnak...</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Írd ide a válaszodat..."></textarea>
         </div>
       </div>
 
       <div class="step-box">
         <div class="step-header">Mai apró lépésem</div>
         <div class="step-desc">Válassz egyetlen konkrét dolgot, amit a következő héten is folytatni fogsz.</div>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Mai lépésem..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 6px;">
         <label class="question-label">Mai gondolatom / felismerésem:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="2" placeholder="Felismerésem..."></textarea>
         </div>
       </div>
 
@@ -838,31 +817,25 @@
 
       <div class="question-block">
         <label class="question-label">Mit jelent számomra ennek a kártyának az üzenete most?</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="4" placeholder="Írd ide a gondolataidat..."></textarea>
         </div>
       </div>
 
       <div class="question-block" style="margin-top: 16px;">
         <label class="question-label">Az én útravalóm:</label>
-        <div class="writing-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="writing-lines-container">
+          <textarea class="pdf-field" rows="4" placeholder="Írd ide az útravalódat..."></textarea>
         </div>
       </div>
 
       <div class="quote-card" style="margin-top: 25px; margin-bottom: 20px; text-align: center;">
-        <p class="quote-text" style="font-size: 15pt; color: #A37C33;">„Elég egy olyan apró lépés, amely közelebb visz önmagadhoz.”</p>
+        <p class="quote-text" style="font-size: 13pt; color: #B38E42;">„Elég egy olyan apró lépés, amely közelebb visz önmagadhoz.”</p>
       </div>
 
       <div style="text-align: center; margin-top: auto; margin-bottom: 10px;">
-        <div style="font-family: 'Alex Brush', cursive; font-size: 26pt; color: #C6A052; margin-bottom: 4px;">Konczosné Megyeri Mónika</div>
-        <div style="font-size: 9.5pt; color: #7A698B; letter-spacing: 2.5px; text-transform: uppercase;">Lélekfény • Test • Lélek • Szellem</div>
+        <div style="font-family: 'Alex Brush', cursive; font-size: 28pt; color: #C6A052; margin-bottom: 2px;">Konczosné Megyeri Mónika</div>
+        <div style="font-size: 9.5pt; color: #6C5B7B; letter-spacing: 2.5px; text-transform: uppercase;">Lélekfény • Test • Lélek • Szellem</div>
       </div>
 
       <div class="page-footer">
