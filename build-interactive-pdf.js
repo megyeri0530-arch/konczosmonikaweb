@@ -11,11 +11,11 @@ async function buildFillablePDF() {
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
     const pages = pdfDoc.getPages();
-    console.log(`Processing ${pages.length} pages for refined AcroForm fields...`);
+    console.log(`Processing ${pages.length} pages with mathematically aligned AcroForm fields...`);
 
     const textColor = rgb(0.17, 0.12, 0.25); // #2D1F3F
 
-    // Helper to add clean, transparent, perfectly-sized text field
+    // Helper to add clean, transparent, perfectly-placed text field
     function addField(pageObj, name, x, y, width, height, isMultiline = true) {
         try {
             const textField = form.createTextField(name);
@@ -36,43 +36,46 @@ async function buildFillablePDF() {
                 textColor: textColor,
             });
             
-            // Set font size safely after adding to page
             try {
-                textField.setFontSize(11);
+                textField.setFontSize(10.5);
             } catch (e) {
-                // Ignore DA error if default appearance handles font size
+                // Default font size handled by PDF reader
             }
         } catch (err) {
             console.error(`Error creating field ${name}:`, err);
         }
     }
 
-    // Page 2: How to use
+    // Page 2: How to use (A4 Height = 841.89 pt)
     const page2 = pages[1];
-    addField(page2, 'card_name', 55, 530, 485, 45, false);
-    addField(page2, 'card_sentence', 55, 325, 485, 110, true);
+    addField(page2, 'card_name', 56.7, 530, 482, 55, true);
+    addField(page2, 'card_sentence', 56.7, 366, 482, 110, true);
 
     // Pages 3-8 (Days 1 to 6)
     for (let day = 1; day <= 6; day++) {
         const pageObj = pages[1 + day];
-        addField(pageObj, `day${day}_q1`, 55, 550, 485, 70, true);
-        addField(pageObj, `day${day}_q2`, 55, 395, 485, 70, true);
-        addField(pageObj, `day${day}_step`, 65, 235, 465, 50, true);
-        addField(pageObj, `day${day}_insight`, 55, 105, 485, 50, true);
+        // Question 1 (3 lines)
+        addField(pageObj, `day${day}_q1`, 56.7, 570, 482, 85, true);
+        // Question 2 (3 lines)
+        addField(pageObj, `day${day}_q2`, 56.7, 445, 482, 85, true);
+        // Step Box (2 lines)
+        addField(pageObj, `day${day}_step`, 65, 309, 465, 56, true);
+        // Insight (2 lines)
+        addField(pageObj, `day${day}_insight`, 56.7, 210, 482, 56, true);
     }
 
     // Page 9 (Day 7)
     const page9 = pages[8];
-    addField(page9, 'day7_q1', 55, 595, 485, 45, true);
-    addField(page9, 'day7_q2', 55, 490, 485, 45, true);
-    addField(page9, 'day7_q3', 55, 385, 485, 45, true);
-    addField(page9, 'day7_step', 65, 235, 465, 45, true);
-    addField(page9, 'day7_insight', 55, 105, 485, 45, true);
+    addField(page9, 'day7_q1', 56.7, 598, 482, 56, true);
+    addField(page9, 'day7_q2', 56.7, 507, 482, 56, true);
+    addField(page9, 'day7_q3', 56.7, 416, 482, 56, true);
+    addField(page9, 'day7_step', 65, 286, 465, 56, true);
+    addField(page9, 'day7_insight', 56.7, 195, 482, 56, true);
 
     // Page 10 (Closing)
     const page10 = pages[9];
-    addField(page10, 'closing_q1', 55, 500, 485, 100, true);
-    addField(page10, 'closing_q2', 55, 315, 485, 100, true);
+    addField(page10, 'closing_q1', 56.7, 541, 482, 113, true);
+    addField(page10, 'closing_q2', 56.7, 380, 482, 113, true);
 
     // Update appearances with embedded font
     try {
@@ -83,7 +86,7 @@ async function buildFillablePDF() {
 
     const modifiedPdfBytes = await pdfDoc.save();
     fs.writeFileSync(pdfPath, modifiedPdfBytes);
-    console.log('SUCCESS: Refined transparent PDF fields generated successfully without errors!');
+    console.log('SUCCESS: Mathematically aligned transparent PDF fields generated successfully!');
 }
 
 buildFillablePDF().catch(err => {
