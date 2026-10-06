@@ -4,3 +4,4 @@ user_step_*.txt
 rolam_story.txt
 .DS_Store
 Thumbs.db
+node_modules/
