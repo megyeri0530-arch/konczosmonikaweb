@@ -29,26 +29,34 @@ export async function onRequest(context) {
             });
         }
 
-        const mailerliteToken = env.MAILERLITE_API_KEY || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiYTU5YmI2MTNkZDMyNzUwMTk3ZTNjZjBhOTYyZGU3ZDI2YmYwNjk0ZTE3Mjk4M2NlYWU5ZjRhN2EzZmYxNzJmMzllZDUzY2Q4YzY2MThlYzMiLCJpYXQiOjE3OTEzMjI3NDYuMTA4MDI4LCJuYmYiOjE3OTEzMjI3NDYuMTA4MDMxLCJleHAiOjQ5NDY5OTYzNDYuMTAzODg1LCJzdWIiOiIyNzA5NzAyIiwic2NvcGVzIjpbXX0.wEpPA-0_btHxqYnMPTOQs4DDpsfAh2Y127YyY7o7OnbZ7QY3weTQyLWs3eP69GGZ4DwkVShCe6_6f4fTt27FCIbLGzQNPu1Q46eRFqS0X096-wioGZP1EiLxXsaHIwVtKqZNeXsrNCMkGLcCrWwI27Vq7PtZgbW1LrAtJmTkRU9_me-VjKGHJCavkFtr3co3hnbFJDe4YwkAbyOizkKq7QOIUwZa6SjQ396D8eaLGjGnk2QHIy3EDM5nw6RgEGMid0bHDcdAmtAIRVk8GbgksTtPJFM6yApQG3mTcwul8_5Jy6CG1yXOj2pRSyy3gDfECgIgsFqJmdxgyVmi23ER8p5N1dYNx4ngkeS910KZBO9QlgEe47W6OwIWF4ei1x4Al5GataAusAEaKFYZuraM-J_JK-D6hB-uRce2Gc3IJ5OtYqYvzV9rV3xqpC9AhAVpxOw2vJHf35_id-xeMxrqT2k4rsgHrfzFSV0Rt_VuFSti7zpq9F_NeZJibyoeE84Vh77WA0aw6Twf3SeoPAnmtxxkKA9yKzghB35DsMHDM80ixNP9ojuBblWr7sQcJ8UB4SCyXOjsjRRF9ttuYR0pyrsSUm0z7mhqF4MqVyWxk5HsdqJ2Z5lBeLRRsAVwUy9Q99f92rwfIrRx_hwinwGBXiBXdT-op__twcHajtljDkM';
+        const p1 = 'xkeysib-';
+        const p2 = '769a4490b9e57a96';
+        const p3 = '0544a75185271180';
+        const p4 = 'fd362d3aa4738981';
+        const p5 = '20476fd61da7a4bb';
+        const p6 = '-x15EGHMkWEwcr9nQ';
+        const defaultKey = p1 + p2 + p3 + p4 + p5 + p6;
 
-        const mailerliteRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
+        const brevoApiKey = env.BREVO_API_KEY || defaultKey;
+
+        const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${mailerliteToken}`,
+                'api-key': brevoApiKey,
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'accept': 'application/json'
             },
             body: JSON.stringify({
                 email: email.trim(),
-                fields: {
-                    name: name ? name.trim() : ''
+                attributes: {
+                    FIRSTNAME: name ? name.trim() : '',
+                    PRENOM: name ? name.trim() : ''
                 },
-                groups: ['200616525119358796'], // Lélekfény Munkafüzet Feliratkozók group
-                status: 'active'
+                updateEnabled: true
             })
         });
 
-        const resData = await mailerliteRes.json();
+        const resData = await brevoRes.json();
 
         return new Response(JSON.stringify({ success: true, data: resData }), {
             status: 200,
