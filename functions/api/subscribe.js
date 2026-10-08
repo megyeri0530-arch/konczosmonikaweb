@@ -42,22 +42,26 @@ export async function onRequest(context) {
         const cleanEmail = email.trim();
 
         // 1. Save contact to Brevo
-        const contactRes = await fetch('https://api.brevo.com/v3/contacts', {
-            method: 'POST',
-            headers: {
-                'api-key': brevoApiKey,
-                'Content-Type': 'application/json',
-                'accept': 'application/json'
-            },
-            body: JSON.stringify({
-                email: cleanEmail,
-                attributes: {
-                    FIRSTNAME: cleanName,
-                    PRENOM: cleanName
+        try {
+            await fetch('https://api.brevo.com/v3/contacts', {
+                method: 'POST',
+                headers: {
+                    'api-key': brevoApiKey,
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json'
                 },
-                updateEnabled: true
-            })
-        });
+                body: JSON.stringify({
+                    email: cleanEmail,
+                    attributes: {
+                        FIRSTNAME: cleanName,
+                        PRENOM: cleanName
+                    },
+                    updateEnabled: true
+                })
+            });
+        } catch (e) {
+            console.error('Contact save notice:', e);
+        }
 
         // 2. Instantly send beautiful welcome email via Brevo Transactional Email API
         const emailHtml = `
@@ -109,7 +113,7 @@ export async function onRequest(context) {
 </html>
         `;
 
-        const emailRes = await fetch('https://api.brevo.com/v3/smtp/email', {
+        await fetch('https://api.brevo.com/v3/smtp/email', {
             method: 'POST',
             headers: {
                 'api-key': brevoApiKey,
