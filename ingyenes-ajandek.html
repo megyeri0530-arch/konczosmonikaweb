@@ -303,13 +303,13 @@
       document.getElementById('lead-magnet-form').style.display = 'none';
       document.getElementById('download-success').style.display = 'block';
 
-      // Send subscriber data to MailerLite via backend Cloudflare API function
+      // Send subscriber data to backend Cloudflare API function (Brevo integration)
       try {
-        fetch('/api/subscribe', {
+        await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, email })
-        }).catch(err => console.error('Subscription sync error:', err));
+        });
       } catch (err) {
         console.error('Subscription error:', err);
       }
