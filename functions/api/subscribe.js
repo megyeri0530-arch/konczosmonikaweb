@@ -63,7 +63,7 @@ export async function onRequest(context) {
             console.error('Contact save notice:', e);
         }
 
-        // 2. Instantly send beautiful welcome email via Brevo Transactional Email API
+        // 2. Instantly send beautiful welcome email via Brevo Transactional Email API using registered account email
         const emailHtml = `
 <!DOCTYPE html>
 <html lang="hu">
@@ -103,7 +103,7 @@ export async function onRequest(context) {
         <li><strong>Légy gyengéd magadhoz:</strong> Csak az számít, ami belőled őszintén felbukkan.</li>
       </ul>
 
-      <p>Ha a 7 nap során bármilyen felismerés megszületik benned, tudd, hogy nyugodtan válaszolhatsz erre az e-mailre – én itt vagyok, és szeretettel olvasom.</p>
+      <p>Ha a 7 nap során bármilyen felismerés megszületik benned, tudd, hogy nyugodtan válaszolhatsz erre an e-mailre – én itt vagyok, és szeretettel olvasom.</p>
     </div>
     <div class="footer">
       <p>Szeretettel és fénnyel,<br><strong>Konczosné Megyeri Mónika</strong><br><a href="https://lélekfény.com" style="color: #C6A052;">www.lélekfény.com</a></p>
@@ -123,7 +123,7 @@ export async function onRequest(context) {
             body: JSON.stringify({
                 sender: {
                     name: 'Konczosné Megyeri Mónika',
-                    email: 'monika@lelekfeny.com'
+                    email: 'megyeri0530@gmail.com'
                 },
                 to: [{ email: cleanEmail, name: cleanName }],
                 subject: `✨ Szeretettel köszöntelek, ${cleanName}! Íme a 7 napos munkafüzeted 🌸`,
