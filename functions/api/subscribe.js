@@ -41,7 +41,7 @@ export async function onRequest(context) {
         const cleanName = name ? name.trim() : 'Kedves Olvasóm';
         const cleanEmail = email.trim();
 
-        // 1. Save contact to Brevo
+        // 1. Save contact to Brevo and assign to 'Új feliratkozók' list (List ID 5)
         try {
             await fetch('https://api.brevo.com/v3/contacts', {
                 method: 'POST',
@@ -56,6 +56,7 @@ export async function onRequest(context) {
                         FIRSTNAME: cleanName,
                         PRENOM: cleanName
                     },
+                    listIds: [5],
                     updateEnabled: true
                 })
             });
